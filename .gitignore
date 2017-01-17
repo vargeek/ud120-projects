@@ -9,3 +9,4 @@ my_classifier.pkl
 my_dataset.pkl
 my_feature_list.pkl
 choose_your_own/*.png
+k_means/*.pdf
