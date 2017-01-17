@@ -33,7 +33,7 @@
 
 import numpy as np
 
-def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True, remove_any_zeroes=False, sort_keys = False):
+def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True, remove_any_zeroes=False, sort_keys = False, save_key = False):
     """ convert dictionary to numpy array of features
         remove_NaN = True will convert "NaN" string to 0.0
         remove_all_zeroes = True will omit any data points for which
@@ -73,7 +73,8 @@ def featureFormat( dictionary, features, remove_NaN=True, remove_all_zeroes=True
             if value=="NaN" and remove_NaN:
                 value = 0
             tmp_list.append( float(value) )
-
+        if save_key:
+            tmp_list.append(key)
         # Logic for deciding whether or not to add the data point.
         append = True
         # exclude 'poi' class as criteria.
