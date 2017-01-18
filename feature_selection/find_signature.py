@@ -38,6 +38,29 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+clf = DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+accuracy = accuracy_score(labels_test, pred)
+print accuracy
+# 0.947667804323
 
-
-
+indices = []
+mostImportant = 0
+mostImportantIndex = 0
+index = 0
+for feature in clf.feature_importances_:
+    if feature > mostImportant:
+        mostImportant = feature
+        mostImportantIndex = index
+    if feature > 0.2:
+        indices.append(index)
+    index += 1
+print mostImportantIndex
+print mostImportant
+print len(indices)
+feature_names = vectorizer.get_feature_names()
+if len(feature_names) > mostImportantIndex:
+    print('most important feature: {}'.format(feature_names[mostImportantIndex]))
